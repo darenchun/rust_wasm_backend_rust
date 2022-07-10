@@ -19,7 +19,8 @@ async fn index() -> impl Responder {
 
 pub async fn hello() -> impl Responder {
     println!("Hello was initiated");
-    return HttpResponse::Ok().body("Hello articles!");
+    let returned_string : String = "Hello".to_owned();
+    return HttpResponse::Ok().body(returned_string);
 }
 
 
