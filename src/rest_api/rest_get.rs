@@ -14,6 +14,7 @@ async fn index() -> impl Responder {
 }
 
 pub async fn hello() ->  Result<impl Responder> {
+    println!("hello has been activated");
     // struct를 json 타입 변환 후 serialization 을 자동으로 시행
     let returned_json : ReturningJson = ReturningJson { json_01: String::from("String_data") };
     return Ok(web::Json(returned_json));
