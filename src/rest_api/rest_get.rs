@@ -20,5 +20,3 @@ pub async fn hello() ->  Result<impl Responder> {
     return Ok(web::Json(returned_json));
 }
 
-
-
