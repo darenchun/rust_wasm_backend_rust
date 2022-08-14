@@ -18,15 +18,15 @@ pub fn activate_connection_mysql() {
     println!("activate connection started...");
     
     // 'env' entries for database connection in url format
-    
-    env::set_var("DATABASE_URL", "mysql://lm66bi6axucq:pscale_pw_iVa2XUgA4Ac98tE6OI9qKONiIOgKu6jefEtPIS8bSrc@cpuydv8x6tzk.ap-northeast-2.psdb.cloud/test_database_01");
-    let url = env::var("DATABASE_URL").expect("DATABASE_URL not found");
-    println!("url : {:?}", &url);
 
-    let builder = mysql::OptsBuilder::from_opts(mysql::Opts::from_url(&url).unwrap());
-    let pool = mysql::Pool::new(builder.ssl_opts(mysql::SslOpts::default())).unwrap();
-    let _conn = pool.get_conn().unwrap();
-    println!("Successfully connected to PlanetScale!");
+    // env::set_var("DATABASE_URL", "mysql://kzfgrb0hyy1n:pscale_pw_3aSSBtrzAb--lOEG8mnsdw4_YmVUAjQ-6YlrDeNhQxs@cpuydv8x6tzk.ap-northeast-2.psdb.cloud/test_database_01");
+    // let url = env::var("DATABASE_URL").expect("DATABASE_URL not found");
+    // println!("url : {:?}", &url);
+
+    // let builder = mysql::OptsBuilder::from_opts(mysql::Opts::from_url(&url).unwrap());
+    // let pool = mysql::Pool::new(builder.ssl_opts(mysql::SslOpts::default())).unwrap();
+    // let _conn = pool.get_conn().unwrap();
+    // println!("Successfully connected to PlanetScale!");
 
     /*
 
