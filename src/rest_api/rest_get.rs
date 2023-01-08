@@ -1,6 +1,8 @@
-use actix_web::{get, web, HttpResponse, Responder, Result};
+use actix_web::{
+    body::BoxBody, get, http::header::ContentType, HttpRequest, HttpResponse, Responder,
+  
+};
 use serde::Serialize;
-
 
 //serde를 사용한 json to string serialization
 #[derive(Serialize)]
@@ -8,15 +10,24 @@ struct ReturningJson {
     json_01: String,
 }
 
+impl Responder for ReturningJson {
+    type Body = BoxBody;
+    fn respond_to(self, _req: &HttpRequest) -> HttpResponse<Self::Body> {
+        let body = serde_json::to_string(&self).unwrap();
+        return HttpResponse::Ok()
+            .content_type(ContentType::json())
+            .body(body);
+    }
+}
+
 #[get("/")]
-async fn index() -> impl Responder {
+pub async fn index() -> impl Responder {
     return HttpResponse::Ok().body("main_page");
 }
 
-pub async fn hello() ->  Result<impl Responder> {
-    println!("hello has been activated");
-    // struct를 json 타입 변환 후 serialization 을 자동으로 시행
-    let returned_json : ReturningJson = ReturningJson { json_01: String::from("String_data") };
-    return Ok(web::Json(returned_json));
+pub async fn hello() -> impl Responder {
+    println!("hello!!!!!!!");
+    return ReturningJson {
+        json_01: "json data".to_string(),
+    };
 }
-
